@@ -18,7 +18,7 @@ public class Direction {
             case 'W':
                 return new Direction('S');
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("this direction not exist");
         }
     }
 
@@ -33,7 +33,7 @@ public class Direction {
             case 'W':
                 return new Direction('S');
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("this direction not exist");
         }
     }
 
