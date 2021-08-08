@@ -8,34 +8,34 @@ public class NumberCruncher {
     }
 
     public int countEven() {
+        MathOperation operation = (a)->(a%2==0);
+        return compute(operation);
+    }
+
+    private int compute(MathOperation operation) {
         int count = 0;
         for (int number : numbers) {
-            if (number % 2 == 0) count++;
+            if (operation.operation(number)) count++;
         }
         return count;
     }
 
     public int countOdd() {
-        int count = 0;
-        for (int number : numbers) {
-            if (number % 2 == 1) count++;
-        }
-        return count;
+        MathOperation operation = (a)->(a%2==1);
+        return compute(operation);
     }
 
     public int countPositive() {
-        int count = 0;
-        for (int number : numbers) {
-            if (number >= 0) count++;
-        }
-        return count;
+        MathOperation operation = (a)->(a>=0);
+        return compute(operation);
     }
 
     public int countNegative() {
-        int count = 0;
-        for (int number : numbers) {
-            if (number < 0) count++;
-        }
-        return count;
+        MathOperation operation = (a)->(a<0);
+        return compute(operation);
+    }
+
+    interface MathOperation {
+        Boolean operation(int a);
     }
 }
