@@ -13,6 +13,8 @@ public class Movie {
 		this.priceCode = priceCode;
 	}
 
+
+
 	public int getPriceCode() {
 		return priceCode;
 	}
