@@ -55,7 +55,7 @@ public class DateParser {
                 dateRangeException,1,31);
 
 
-        if (dateAndTimeString.substring(11, 12).equals("Z")) {
+        if (dateAndTimeString.charAt(11) == 'Z') {
             hour = 0;
             minute = 0;
         } else {
