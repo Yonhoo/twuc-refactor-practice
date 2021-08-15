@@ -1,21 +1,27 @@
 package com.twu.refactoring;
 
-public class Direction {
-    private final char direction;
 
-    public Direction(char direction) {
-        this.direction = direction;
+import java.util.Objects;
+
+public class Direction {
+
+    private final Type type;
+
+    public  Direction(char value) {
+        this.type = Type.valueOf(String.valueOf(value));
     }
 
+
+
     public Direction turnRight() {
-        switch (direction) {
-            case 'N':
+        switch (type) {
+            case N:
                 return new Direction('E');
-            case 'S':
+            case S:
                 return new Direction('W');
-            case 'E':
+            case E:
                 return new Direction('N');
-            case 'W':
+            case W:
                 return new Direction('S');
             default:
                 throw new IllegalArgumentException("this direction not exist");
@@ -23,17 +29,36 @@ public class Direction {
     }
 
     public Direction turnLeft() {
-        switch (direction) {
-            case 'N':
+        switch (type) {
+            case N:
                 return new Direction('W');
-            case 'S':
+            case S:
                 return new Direction('E');
-            case 'E':
+            case E:
                 return new Direction('N');
-            case 'W':
+            case W:
                 return new Direction('S');
             default:
                 throw new IllegalArgumentException("this direction not exist");
+        }
+    }
+
+
+    public enum Type {
+        N("North"),
+        E("East"),
+        W("West"),
+        S("South");
+
+        private final String description;
+
+        Type(String description) {
+
+            this.description = description;
+        }
+
+        public String getDescription() {
+            return description;
         }
     }
 
@@ -41,21 +66,17 @@ public class Direction {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
-        Direction direction1 = (Direction) o;
-
-        if (direction != direction1.direction) return false;
-
-        return true;
+        Direction direction = (Direction) o;
+        return type == direction.type;
     }
 
     @Override
     public int hashCode() {
-        return (int) direction;
+        return Objects.hash(type);
     }
 
     @Override
     public String toString() {
-        return "Direction{direction=" + direction + '}';
+        return "Direction{direction=" + type.description + '}';
     }
 }
